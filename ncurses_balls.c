@@ -111,7 +111,7 @@ int main(int argc, char *argv[]) {
     while(1) {
         clear();
         draw_balls();
-        refresh();
+        refresh(); //draws the screen's current state
         usleep(DELAY);
         check_collisions(max_x, max_y);
         step();
