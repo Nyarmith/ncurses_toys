@@ -13,7 +13,8 @@
 float rfloat(){
     return ((float)rand() / (float)RAND_MAX);
 } //C doesn't have a built-in random float func
-
+//
+//rounds float to int
 int roundfl(float in){
     return (in + 0.5);
 }
