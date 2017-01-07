@@ -47,7 +47,7 @@ void draw_balls(){
     for (i=0; i<NUMBALLS;i++){
         x_round = roundfl(ball_pool[i]->x_pos);
         y_round = roundfl(ball_pool[i]->y_pos);
-		mvprintw(y_round, x_round, "o");
+        mvprintw(y_round, x_round, "o");
     }
 }
 
@@ -95,11 +95,11 @@ int main(int argc, char *argv[]) {
 
     //ncurses related stuff
     int max_y=0, max_x=0;
-	initscr(); //initialize scren
-	noecho();  //don't echo input
-	curs_set(FALSE); //don't display cursor
+    initscr(); //initialize scren
+    noecho();  //don't echo input
+    curs_set(FALSE); //don't display cursor
     //get rows and columns, init global "standard screen" var
-	getmaxyx(stdscr, max_y, max_x); 
+    getmaxyx(stdscr, max_y, max_x); 
 
     //create balls
     int i;
@@ -107,16 +107,16 @@ int main(int argc, char *argv[]) {
         ball_pool[i] = spawn_random_ball(max_x,max_y);
     }
     //game loop
-	while(1) {
-		clear();
+    while(1) {
+        clear();
         draw_balls();
-		refresh();
-		usleep(DELAY);
+        refresh();
+        usleep(DELAY);
         check_collisions(max_x, max_y);
         step();
-	}
+    }
 
-	endwin();
+    endwin();
 }
 
 //POTENTIAL TODO: Use good collission data structure, add different collission modes(e.g. no wall, softer collissions)
