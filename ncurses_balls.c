@@ -29,8 +29,8 @@ typedef struct{
 //global object pool
 ball_t* ball_pool[NUMBALLS] = {0};
 
+//used to initialize
 ball_t* spawn_random_ball(int max_x, int max_y){
-
     ball_t* raw_ball = malloc(sizeof(ball_t));
 
     raw_ball->x_pos = rfloat() * max_x;
