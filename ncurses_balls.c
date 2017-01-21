@@ -13,7 +13,8 @@
 float rfloat(){
     return ((float)rand() / (float)RAND_MAX);
 } //C doesn't have a built-in random float func
-
+//
+//rounds float to int
 int roundfl(float in){
     return (in + 0.5);
 }
@@ -110,7 +111,7 @@ int main(int argc, char *argv[]) {
     while(1) {
         clear();
         draw_balls();
-        refresh();
+        refresh(); //draws the screen's current state
         usleep(DELAY);
         check_collisions(max_x, max_y);
         step();
