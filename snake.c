@@ -1,4 +1,4 @@
-#include <ncurses.h>
+#include <curses.h>
 #include <unistd.h>
 #include <stdlib.h>
 #define DELAY 65000
