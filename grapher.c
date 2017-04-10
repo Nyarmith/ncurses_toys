@@ -1,6 +1,13 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+//basic grapher
+//
+//possible improvements:
+//           -only animate/draw graph when it's in our visible range
+//           -some kind of interface to take in a function pointer
+//           -animate several graphs at a time
+
 
 const size_t DELAY=60000;
 
