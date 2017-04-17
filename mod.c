@@ -3,25 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DELAY 300000
+#define DELAY 180000
 
-int main(int argc, char** argv){
-    if (argc < 4){
-        printf ("usage: %s <number> <startno> <endno> [multiple]", argv[0]);
-        return 0;
-    }
-    int number = atoi(argv[1]);
-    int startno = atoi(argv[2]);
-    int endno = atoi(argv[3]);
-    int multiple = (argc==5) ? atoi(argv[4]) : 1;
-
-    initscr();
-    int line = 1;
-    while(startno <= endno){
-        move(line, 2);
-
+void print_mod(int dividend, int divisor){
         attron(A_BOLD);
-        wprintw(stdscr, "%d", number);
+        wprintw(stdscr, "%2d", dividend);
         attroff(A_BOLD);
 
         attron(A_ITALIC | A_BOLD);
@@ -29,7 +15,7 @@ int main(int argc, char** argv){
         attroff(A_ITALIC | A_BOLD);
 
         attron(A_BOLD);
-        wprintw(stdscr, "%d",startno);
+        wprintw(stdscr, "%2d ",divisor);
         attroff(A_BOLD);
 
         attron(A_BLINK | A_DIM);
@@ -37,13 +23,49 @@ int main(int argc, char** argv){
         attroff(A_BLINK | A_DIM);
 
         attron(A_BOLD);
-        wprintw(stdscr, "%d", number % startno);
+        wprintw(stdscr, "%2d", dividend % divisor);
         attroff(A_BOLD);
+}
 
-        refresh();
+int main(int argc, char** argv){
+    if (argc < 4){
+        printf ("usage: %s <start_dividend> <stop_dividend> <start_divisor> <stop_divisor> [multiple]", argv[0]);
+        return 0;
+    }
+    int start_dividend = atoi(argv[1]);
+    int stop_dividend  = atoi(argv[2]);
+    int start_divisor  = atoi(argv[3]);
+    int stop_divisor   = atoi(argv[4]);
+    int multiple       = (argc==6) ? atoi(argv[5]) : 1;
+
+    initscr();
+
+    int line = 1;
+    while(start_dividend <= stop_dividend){
+        move(line, 2);
+
+        int fst = 0;
+        //2nd dim
+        int divisor_temp = start_divisor;
+        while(divisor_temp <= stop_divisor){
+            if (fst != 0){
+                wprintw(stdscr, "  ");
+                attron(A_ALTCHARSET | A_BOLD);
+                wprintw(stdscr, "a");
+                attroff(A_ALTCHARSET | A_BOLD);
+                wprintw(stdscr, " ");
+            } else {
+                fst = 1;
+            }
+            print_mod(start_dividend, divisor_temp);
+            refresh();
+            divisor_temp += multiple;
+            usleep( DELAY );
+
+        }
 
         line++;
-        startno += multiple;
+        start_dividend += multiple;
 
         usleep(DELAY);
     }
