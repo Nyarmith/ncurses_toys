@@ -60,9 +60,9 @@ int main(){
   keypad(stdscr, TRUE);
   nodelay(stdscr, TRUE);
   mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL); //REPORT_MOUSE_POSITION is not in ALL_MOUSE_EVENTS!!!
-  //printf("\033[?1003h\n");
+  printf("\033[?1003h\n");   //this is the one that tracks every mouse event
   //printf("\e[?1000l\e[?1005l\e[?1015l");
-  printf("\x1b[<0;76;32m");
+  //printf("\x1b[<0;76;32m");
   noecho(); //if there's an echo, you'll eventually print out characters that close the terminal
 
   Ball the_ball;
