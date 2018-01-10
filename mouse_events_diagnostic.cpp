@@ -107,4 +107,5 @@ int main(){
       refresh();
     }
   } while (c != 'q');
+  endwin();
 }
