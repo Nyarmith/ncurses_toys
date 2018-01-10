@@ -100,7 +100,7 @@ int main(){
     c = getch();
     if (c == KEY_MOUSE && getmouse(&m) == OK){
       mvprintw(2, 3, "                                        ");
-      mvprintw(2, 3, "y:%d , x:%d -- bstate: %#X", m.y, m.x, m.bstate);
+      mvprintw(2, 3, "y:%d , x:%d -- bstate: 0x%08X", m.y, m.x, m.bstate);
 
       log_bstate(m.bstate);
 
