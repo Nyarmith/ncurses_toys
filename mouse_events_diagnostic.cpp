@@ -81,12 +81,17 @@ void log_bstate(mmask_t bstate){
 }
 
 int main(){
+  setenv("TERM","xterm-1006",1);  //https://stackoverflow.com/questions/47256750/how-to-build-curses-program-that-supports-more-than-223-columns-of-mouse-input
   initscr();
   cbreak();
   keypad(stdscr, TRUE);
   nodelay(stdscr, TRUE);
   mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL); //REPORT_MOUSE_POSITION is not in ALL_MOUSE_EVENTS!!!
-  printf("\033[?1003h\n");   //this is the one that tracks every mouse event
+
+  printf("\033[?1002h\n");   //this is the one that tracks every mouse event
+  //http://invisible-island.net/xterm/ctlseqs/ctlseqs.html, go to P s = 1 0 0 0 and downward for mouse tracking modes!
+  //
+  //printf("\033[?1003h\n");   //this is the one that tracks every mouse event
   //printf("\e[?1000l\e[?1005l\e[?1015l");
   //printf("\x1b[<0;76;32m");
   noecho(); //if there's an echo, you'll eventually print out characters that close the terminal
